@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { WorkspaceRoutingModule } from './workspace-routing.module';
 import { WorkspaceDetailComponent } from './workspace-detail/workspace-detail.component';
 import { WorkspaceFormComponent } from './workspace-form/workspace-form.component';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { WorkspaceFormComponent } from './workspace-form/workspace-form.componen
     CommonModule,
     SharedModule,
     HttpClientModule,
-    WorkspaceRoutingModule
-]
+    ReactiveFormsModule,
+    WorkspaceRoutingModule,
+    FloatLabelModule,
+    InputTextModule
+  ]
 })
 export class WorkspaceModule { }

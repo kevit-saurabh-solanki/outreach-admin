@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { WorkspaceInterface } from './workspace.interface';
+import { SendWorkspaceInterface, WorkspaceInterface } from './workspace.interface';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class WorkspaceService {
     )
   }
 
-  addWorkspace({ _id, createdAt, ...body }: WorkspaceInterface) {
+  addWorkspace(body: SendWorkspaceInterface) {
     return this.http.post(`${this.baseurl}`, body).pipe(
       catchError(err => {
         return throwError(() => err);
@@ -27,7 +27,7 @@ export class WorkspaceService {
     )
   }
 
-  editWorkspace(workspaceId: string, { _id, createdAt, ...body }: WorkspaceInterface) {
+  editWorkspace(workspaceId: string, body: SendWorkspaceInterface) {
     return this.http.put(`${this.baseurl}/${workspaceId}`, body).pipe(
       catchError(err => {
         return throwError(() => err);

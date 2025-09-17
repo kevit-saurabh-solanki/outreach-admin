@@ -1,1 +1,40 @@
-<p>workspace-form works!</p>
+<form [formGroup]="workspaceForm" (ngSubmit)="workspace ? editWorkspace() : addWorkspace()">
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="name" formControlName="name" />
+            <label for="name">Name</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="name?.invalid && name?.touched">
+                <span *ngIf="name?.errors?.['required']">
+                    Name is required
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="description" formControlName="description" />
+            <label for="description">Description</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="description?.invalid && description?.touched">
+                <span *ngIf="description?.errors?.['required']">
+                    Description is required
+                </span>
+            </small>
+        </div>
+    </div>
+
+
+    <button type="submit" [disabled]="workspaceForm.invalid">
+        {{ workspace ? 'Edit' : 'Add' }}
+    </button>
+    <button type="button" (click)="goBack()">Back</button>
+    <p class="success-message" *ngIf="!workspace && successMessage">Workspace Added SuccessFully</p>
+    <p class="success-message" *ngIf="workspace && successMessage">Workspace Edited SuccessFully</p>
+</form>
