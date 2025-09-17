@@ -1,0 +1,16 @@
+<app-menu-bar></app-menu-bar>
+<div *ngIf="workspace" class="mainBox">
+    <div class="title-box">
+        <h1 class="title">{{workspace.name | uppercase}}</h1>
+    </div>
+    <div class="detail-box">
+        <p class="detail _id">Workspace Id: {{workspace._id}}</p>
+        <p class="detail name">Worksapce Name: {{workspace.name}}</p>
+        <p class="detail description">Workspace Description: {{workspace.description}}</p>
+    </div>
+    <div class="action-box">
+        <button type="button" class="edit" (click)="redirectToEdit()">Edit</button>
+        <button type="button" class="delete" (click)="deleteWorkspace(workspace._id)" >Delete</button>
+        <button type="button" class="back" (click)="goBack()">Back</button>
+    </div>
+</div>
