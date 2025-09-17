@@ -9,16 +9,22 @@ const routes: Routes = [
     title: 'Admin Login'
   },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
     path: 'workspaces',
     loadChildren: () => import('./Workspaces/workspace.module').then(m => m.WorkspaceModule),
     title: 'Workspaces',
-    // canActivate: [authGuard]
-  }
+    canActivate: [authGuard]
+  },
+  {
+    path: 'workspaces/:workspaceId/users',
+    loadChildren: () => import('./Users/users.module').then(m => m.UsersModule),
+    title: 'Users',
+    canActivate: [authGuard]
+  },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
