@@ -10,8 +10,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
-
-
+import { DropdownModule } from 'primeng/dropdown'
 
 @NgModule({
   declarations: [
@@ -27,7 +26,8 @@ import { InputTextModule } from 'primeng/inputtext';
     UsersRoutingModule,
     ReactiveFormsModule,
     FloatLabelModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule
   ]
 })
 export class UsersModule { }

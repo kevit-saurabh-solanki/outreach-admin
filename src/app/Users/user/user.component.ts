@@ -19,8 +19,8 @@ export class UserComponent {
     if (!confirmDelete) return;
 
     this.userService.deleteUser(userId).subscribe({
-      next: () => {
-        console.log('User deleted')
+      next: (res) => {
+        console.log('user deleted');
       },
       error: (err) => {
         console.error('Error deleting User:', err);

@@ -44,7 +44,9 @@ export class UsersService {
   }
 
   deleteUser(userId: string) {
-    return this.http.delete(`${this.baseUrl}/${userId}`).pipe(
+    const workspaceId = localStorage.getItem('workspaceId') || '';
+
+    return this.http.delete(`${this.baseUrl}/${userId}`, { params: { workspaceId: workspaceId } }).pipe(
       catchError((err) => {
         return throwError(() => err);
       })

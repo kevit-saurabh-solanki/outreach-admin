@@ -11,6 +11,9 @@
                 <span *ngIf="email?.errors?.['required']">
                     Email is required
                 </span>
+                <span *ngIf="email?.errors?.['email']">
+                    Please enter valid email
+                </span>
             </small>
         </div>
     </div>
@@ -26,6 +29,22 @@
                 <span *ngIf="password?.errors?.['required']">
                     Password is required
                 </span>
+                <span *ngIf="password?.errors?.['minlength']">
+                    Minimum 6 character are required
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <p-dropdown class="dropdown" [options]="roleOption" inputId="float-label" formControlName="role" />
+            <label for="float-label">Select a Role</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="role?.invalid && role?.touched">
+                <span *ngIf="role?.errors?.['required']">Role is required.</span>
             </small>
         </div>
     </div>
@@ -35,6 +54,6 @@
         {{ user ? 'Edit' : 'Add' }}
     </button>
     <button type="button" (click)="goBack()">Back</button>
-    <p class="success-message" *ngIf="!user && successMessage">Workspace Added SuccessFully</p>
-    <p class="success-message" *ngIf="user && successMessage">Workspace Edited SuccessFully</p>
+    <p class="success-message" *ngIf="!user && successMessage">User Added SuccessFully</p>
+    <p class="success-message" *ngIf="user && successMessage">User Edited SuccessFully</p>
 </form>
