@@ -12,7 +12,7 @@ export class UsersService {
   baseUrl: string = "http://localhost:3000/users"
 
   fetchUsersByWorkspaceId(workspaceId: string) {
-    return this.http.get<UsersInterface[]>(`${this.baseUrl}/${workspaceId}`).pipe(
+    return this.http.get<UsersInterface[]>(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
       catchError(err => {
         return throwError(() => err);
       })
@@ -20,7 +20,7 @@ export class UsersService {
   }
 
   fetchUserByUserId(userId: string) {
-    return this.http.get<UsersInterface[]>(`${this.baseUrl}/${userId}`).pipe(
+    return this.http.get<UsersInterface>(`${this.baseUrl}/${userId}`).pipe(
       catchError(err => {
         return throwError(() => err);
       })

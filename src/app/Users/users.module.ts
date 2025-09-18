@@ -4,6 +4,9 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../Shared/shared.module';
+import { UsersRoutingModule } from './users-routing.module';
 
 
 
@@ -15,7 +18,10 @@ import { UserFormComponent } from './user-form/user-form.component';
     UserFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    UsersRoutingModule
   ]
 })
 export class UsersModule { }

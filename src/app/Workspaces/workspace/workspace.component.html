@@ -3,6 +3,6 @@
 <td class="row-item buttons">
   <button class="viewBtn" [routerLink]="['/workspaces', workspace._id]">View</button>
   <button class="deleteBtn" (click)="deleteWorkspace(workspace._id)">Delete</button>
-   <button class="openBtn">Open</button>
+   <button class="openBtn" [routerLink]="['/workspaces/', workspace._id, 'users']">Open</button>
 </td>
 

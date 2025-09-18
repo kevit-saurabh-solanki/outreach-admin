@@ -3,7 +3,11 @@ export interface UsersInterface {
     email: string;
     password: string;
     role: string;
-    workspaceId: string[];
+    workspaceId: {
+        _id: string,
+        name: string,
+        description: string
+    }[];
 }
 
 export interface SendUsersInterface {

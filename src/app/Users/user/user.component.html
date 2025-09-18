@@ -1,1 +1,7 @@
-<p>user works!</p>
+<td class="row-item name">{{ user.email }}</td>
+<td class="row-item description">{{ user.role }}</td>
+<td class="row-item buttons">
+    <button class="viewBtn" [routerLink]="['/workspaces/', workspaceId, 'users', user._id]">View</button>
+    <button class="deleteBtn" (click)="deleteUser(user._id)">Delete</button>
+    <button class="editBtn">Edit</button>
+</td>
