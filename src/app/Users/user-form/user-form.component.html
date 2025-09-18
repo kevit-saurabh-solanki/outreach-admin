@@ -1,1 +1,59 @@
-<p>user-form works!</p>
+<form [formGroup]="userForm" (ngSubmit)="user ? editUser() : addUser()">
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="email" formControlName="email" />
+            <label for="email">Email</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="email?.invalid && email?.touched">
+                <span *ngIf="email?.errors?.['required']">
+                    Email is required
+                </span>
+                <span *ngIf="email?.errors?.['email']">
+                    Please enter valid email
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input type="password" pInputText id="password" formControlName="password" />
+            <label for="password">Password</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="password?.invalid && password?.touched">
+                <span *ngIf="password?.errors?.['required']">
+                    Password is required
+                </span>
+                <span *ngIf="password?.errors?.['minlength']">
+                    Minimum 6 character are required
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <p-dropdown class="dropdown" [options]="roleOption" inputId="float-label" formControlName="role" />
+            <label for="float-label">Select a Role</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="role?.invalid && role?.touched">
+                <span *ngIf="role?.errors?.['required']">Role is required.</span>
+            </small>
+        </div>
+    </div>
+
+
+    <button type="submit" [disabled]="userForm.invalid">
+        {{ user ? 'Edit' : 'Add' }}
+    </button>
+    <button type="button" (click)="goBack()">Back</button>
+    <p class="success-message" *ngIf="!user && successMessage">User Added SuccessFully</p>
+    <p class="success-message" *ngIf="user && successMessage">User Edited SuccessFully</p>
+</form>

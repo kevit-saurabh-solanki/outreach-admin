@@ -1,1 +1,17 @@
-<p>user-detail works!</p>
+<app-menu-bar></app-menu-bar>
+<div *ngIf="user" class="mainBox">
+    <div class="title-box">
+        <h1 class="title">{{user.email | uppercase}}</h1>
+    </div>
+    <div class="detail-box">
+        <p class="detail _id">User Id: {{user._id}}</p>
+        <p class="detail name">User email: {{user.email}}</p>
+        <p class="detail description">Role: {{user.role}}</p>
+        <p class="detail workspace">Belongs To Worksapces: <span *ngFor="let ws of user.workspaceId" class="badge">{{ws.name}}</span></p>
+    </div>
+    <div class="action-box">
+        <button type="button" class="edit" (click)="redirectToEdit()">Edit</button>
+        <button type="button" class="delete" (click)="deleteUser(user._id)">Delete</button>
+        <button type="button" class="back" (click)="goBack()">Back</button>
+    </div>
+</div>
