@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersInterface } from '../users.interface';
 
 @Component({
   selector: 'app-users-list',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './users-list.component.scss'
 })
 export class UsersListComponent {
-
+  users!: UsersInterface;
+  
 }

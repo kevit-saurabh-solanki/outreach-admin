@@ -1,9 +1,53 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SendUsersInterface, UsersInterface } from './users.interface';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  baseUrl: string = "http://localhost:3000/users"
+
+  fetchUsersByWorkspaceId(workspaceId: string) {
+    return this.http.get<UsersInterface[]>(`${this.baseUrl}/${workspaceId}`).pipe(
+      catchError(err => {
+        return throwError(() => err);
+      })
+    )
+  }
+
+  fetchUserByUserId(userId: string) {
+    return this.http.get<UsersInterface[]>(`${this.baseUrl}/${userId}`).pipe(
+      catchError(err => {
+        return throwError(() => err);
+      })
+    )
+  }
+
+  addUser(body: SendUsersInterface) {
+    return this.http.post(`${this.baseUrl}`, body).pipe(
+      catchError(err => {
+        return throwError(() => err);
+      })
+    )
+  }
+
+  editUser(userId: string, body: SendUsersInterface) {
+    return this.http.put(`${this.baseUrl}/${userId}`, body).pipe(
+      catchError((err) => {
+        return throwError(() => err);
+      })
+    )
+  }
+
+  deleteUser(userId: string) {
+    return this.http.delete(`${this.baseUrl}/${userId}`).pipe(
+      catchError((err) => {
+        return throwError(() => err);
+      })
+    )
+  }
 }
