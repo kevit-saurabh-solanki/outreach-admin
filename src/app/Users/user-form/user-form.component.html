@@ -1,1 +1,40 @@
-<p>user-form works!</p>
+<form [formGroup]="userForm" (ngSubmit)="user ? editUser() : addUser()">
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input pInputText id="email" formControlName="email" />
+            <label for="email">Email</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="email?.invalid && email?.touched">
+                <span *ngIf="email?.errors?.['required']">
+                    Email is required
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="card flex justify-content-center">
+        <p-floatLabel>
+            <input type="password" pInputText id="password" formControlName="password" />
+            <label for="password">Password</label>
+        </p-floatLabel>
+
+        <div class="validation-wrapper">
+            <small class="validation-message" *ngIf="password?.invalid && password?.touched">
+                <span *ngIf="password?.errors?.['required']">
+                    Password is required
+                </span>
+            </small>
+        </div>
+    </div>
+
+
+    <button type="submit" [disabled]="userForm.invalid">
+        {{ user ? 'Edit' : 'Add' }}
+    </button>
+    <button type="button" (click)="goBack()">Back</button>
+    <p class="success-message" *ngIf="!user && successMessage">Workspace Added SuccessFully</p>
+    <p class="success-message" *ngIf="user && successMessage">Workspace Edited SuccessFully</p>
+</form>

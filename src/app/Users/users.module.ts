@@ -7,6 +7,9 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../Shared/shared.module';
 import { UsersRoutingModule } from './users-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -21,7 +24,10 @@ import { UsersRoutingModule } from './users-routing.module';
     CommonModule,
     RouterModule,
     SharedModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    ReactiveFormsModule,
+    FloatLabelModule,
+    InputTextModule
   ]
 })
 export class UsersModule { }
