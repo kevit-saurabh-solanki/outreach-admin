@@ -66,9 +66,11 @@ export class WorkspaceFormComponent {
       next: (res) => {
         this.workspaceForm.reset();
         console.log("workspace add");
+        this.successMessage = true;
       },
       error: (err) => {
         console.log(err);
+        this.successMessage = false;
       }
     })
   }
@@ -87,9 +89,11 @@ export class WorkspaceFormComponent {
       next: (res) => {
         this.workspaceForm.reset();
         console.log('workspace edited');
+        this.successMessage = true;
       },
       error: (err) => {
         console.log(err);
+        this.successMessage = false;
       }
     })
   }

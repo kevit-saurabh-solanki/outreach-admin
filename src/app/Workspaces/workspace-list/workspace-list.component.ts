@@ -16,7 +16,6 @@ export class WorkspaceListComponent {
     this.workspaceService.fetchAllWorkspaces().subscribe({
       next: (response) => {
         this.workspaces = response;
-        console.log('Workspace fetched');
       },
       error: (err) => {
         console.log(err);
