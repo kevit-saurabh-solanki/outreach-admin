@@ -10,17 +10,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UsersListComponent {
   users!: UsersInterface[];
-  
-  constructor(private userService: UsersService, private routeParam: ActivatedRoute, private router: Router) {}
+  page: number = 1;
+  totalPages: number = 1;
+
+  constructor(private userService: UsersService, private routeParam: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.loadUsers();
+  }
+
+  goBack() {
+    this.router.navigate(['/workspaces']);
+  }
+
+  loadUsers() {
     const workspaceId = this.routeParam.snapshot.paramMap.get('workspaceId');
     if (!workspaceId) return;
     localStorage.setItem('workspaceId', workspaceId);
 
-    this.userService.fetchUsersByWorkspaceId(workspaceId).subscribe({
+    this.userService.fetchUsersByWorkspaceId(workspaceId, this.page).subscribe({
       next: (response) => {
-        this.users = response;
+        this.users = response.data;
+        response.totalPages === 0 ? this.totalPages = 1 : this.totalPages = response.totalPages;
       },
       error: (err) => {
         console.log(err);
@@ -28,7 +39,17 @@ export class UsersListComponent {
     })
   }
 
-  goBack() {
-    this.router.navigate(['/workspaces']);
+  nextPage() {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.loadUsers();
+    }
+  }
+
+  prevPage() {
+    if (this.totalPages > 1) {
+      this.page--;
+      this.loadUsers();
+    }
   }
 }

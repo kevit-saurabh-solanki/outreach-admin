@@ -23,4 +23,10 @@
             </tbody>
         </table>
     </div>
+
+    <div class="pagination-box">
+        <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
+        <span>Page {{page}} of {{totalPages}} </span>
+        <button (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+    </div>
 </div>
