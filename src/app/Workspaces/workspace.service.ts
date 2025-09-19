@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SendWorkspaceInterface, WorkspaceInterface } from './workspace.interface';
+import { PaginateWorkspaceInterface, SendWorkspaceInterface, WorkspaceInterface } from './workspace.interface';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class WorkspaceService {
   constructor(private http: HttpClient) { }
   baseurl: string = "http://localhost:3000/workspaces";
 
-  fetchAllWorkspaces() {
-    return this.http.get<WorkspaceInterface[]>(`${this.baseurl}`).pipe(
+  fetchAllWorkspaces(page: number, limit: number = 10) {
+    return this.http.get<PaginateWorkspaceInterface>(`${this.baseurl}?page=${page}&limit=${limit}`).pipe(
       catchError(err => {
         return throwError(() => err);
       })

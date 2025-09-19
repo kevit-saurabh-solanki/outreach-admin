@@ -9,17 +9,38 @@ import { WorkspaceService } from '../workspace.service';
 })
 export class WorkspaceListComponent {
   workspaces: WorkspaceInterface[] = [];
+  page: number = 1;
+  totalPages: number = 1;
 
-  constructor(private workspaceService: WorkspaceService) {}
+  constructor(private workspaceService: WorkspaceService) { }
 
   ngOnInit() {
-    this.workspaceService.fetchAllWorkspaces().subscribe({
+    this.loadWorkspaces();
+  }
+
+  loadWorkspaces() {
+    this.workspaceService.fetchAllWorkspaces(this.page).subscribe({
       next: (response) => {
-        this.workspaces = response;
+        this.workspaces = response.data;
+        response.totalPages === 0 ? this.totalPages = 1 : this.totalPages = response.totalPages;
       },
       error: (err) => {
-        console.log(err);
+        console.error(err);
       }
     })
+  }
+
+  prevPage() {
+    if (this.page < this.totalPages) {
+      this.page--;
+      this.loadWorkspaces();
+    }
+  }
+
+  nextPage() {
+    if (this.page > 1) {
+      this.page++;
+      this.loadWorkspaces();
+    }
   }
 }

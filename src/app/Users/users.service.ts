@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SendUsersInterface, UsersInterface } from './users.interface';
+import { PaginateUserInterface, SendUsersInterface, UsersInterface } from './users.interface';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class UsersService {
   constructor(private http: HttpClient) { }
   baseUrl: string = "http://localhost:3000/users"
 
-  fetchUsersByWorkspaceId(workspaceId: string) {
-    return this.http.get<UsersInterface[]>(`${this.baseUrl}/workspace/${workspaceId}`).pipe(
+  fetchUsersByWorkspaceId(workspaceId: string, page: number, limit: number = 10) {
+    return this.http.get<PaginateUserInterface>(`${this.baseUrl}/workspace/${workspaceId}?page=${page}&limit=${limit}`).pipe(
       catchError(err => {
         return throwError(() => err);
       })

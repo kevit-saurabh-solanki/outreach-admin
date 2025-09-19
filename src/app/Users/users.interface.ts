@@ -16,3 +16,10 @@ export interface SendUsersInterface {
     role: string;
     workspaceId: string;
 }
+
+export interface PaginateUserInterface {
+    data: UsersInterface[],
+    total: number;
+    page: number;
+    totalPages: number;
+}
