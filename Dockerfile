@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 5080
 
-CMD ["ng", "serve"]
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "5080"]
